@@ -1,0 +1,35 @@
+#homeHeading
+
+{
+  
+  color: #f05f40
+
+}
+#nome{
+  margin-bottom: 100px
+}
+#click{
+  color: #f05f40
+
+}
+#btnPrestador{
+
+  background-color: #ee4b28;
+  border-color: #ffffff
+}
+#btnNaoPrestador{
+
+  background-color: #ee4b28;
+  border-color: #ffffff
+
+}
+#btnsPrestador{
+  margin-bottom: 40px;
+}
+#msgForm2{
+	display: none;
+}
+#msgForm{
+	display: none;
+}
+

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>people4people</title>
+        <link rel="icon" href="img/mini7.png">
+
+        <!-- Bootstrap Core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+        <!-- Plugin CSS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+        <script src="http://rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="http://rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Theme CSS -->
+        <link href="css/creative.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+        <script>
+            var App = angular.module('postserviceBM', []);
+            App.controller('postserviceConsulta', function($scope, $http, $window ) {
+                var post = {
+                    _id :"",
+                    nome:"",
+                    email:"",
+                    telefone:""
+                }
+                $scope.init = function() {
+                }
+                $scope.init();
+                $scope.postdataNaoPrestador = function(username2, cpf2, observacoes2, email2, telefone2, dtNascimento2 ) {
+                    var cpfFormatado = cpf2.replace("-","");
+                    var cpfFormatado2 = cpfFormatado.replace(".","");
+                    var cpfEnviado = cpfFormatado2.replace(".","");
+                    var telefoneFormatado = telefone2.replace("(","");
+                    var telefoneFormatado2 = telefoneFormatado.replace(")","");
+                    var telefoneEnviado = telefoneFormatado2.replace("-","")
+                    post.nome = username2;
+                    post.cpf = cpfEnviado;
+                    post.observacoes = observacoes2;
+                    post.email = email2;
+                    post.telefone = telefoneEnviado;
+                    post.prestador = false;
+                    post.dtNascimento = dtNascimento2;
+                    $http.get('https://oc-129-144-158-115.compute.oraclecloud.com/rest/venda-online/v1/corretores/validar-corretora?corretora=2123&cep=123').success(function(response, status, headers, config) {
+                        if (response.status === true) {
+                            console.log(response);
+                            }else{
+                            console.log(response);
+                        }
+                        console.log(response);
+                    }).error(function(response, status, headers, config) {});
+                };
+                $scope.postdataPrestador = function(username, cpf, observacoes, email, telefone, atividade, dtNascimento) {
+                  var cpfFormatado = cpf.replace("-","");
+                  var cpfFormatado2 = cpfFormatado.replace(".","");
+                  var cpfEnviado = cpfFormatado2.replace(".","");
+                  var telefoneFormatado = telefone.replace("(","");
+                  var telefoneFormatado2 = telefoneFormatado.replace(")","");
+                  var telefoneEnviado = telefoneFormatado2.replace("-","")
+                    post.nome = username;
+                    post.cpf = cpfEnviado;
+                    post.observacoes = observacoes;
+                    post.email = email;
+                    post.telefone = telefoneEnviado;
+                    post.atividade = atividade;
+                    post.prestador = true;
+                    post.dtNascimento = dtNascimento;
+                    $http.get('https://oc-129-144-158-115.compute.oraclecloud.com/rest/venda-online/v1/corretores/validar-corretora?corretora=2123&cep=123').success(function(response, status, headers, config) {
+                        if (response.status === true) {
+                          //window.location.href = 'index.html'
+                          console.log(response);
+                          console.log(response);
+                        }else{
+                          console.log(response);
+                          console.log(response);
+                        }
+                    }).error(function(response, status, headers, config) {});
+                };
+            });
+        </script>
+
+    </head>
+
+    <body ng-app="postserviceBM" ng-controller="postserviceConsulta" id="page-top">
+
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        Menu
+                        <i class="fa fa-bars"></i>
+                    </button>
+                   <!-- <a class="navbar-brand page-scroll" href="#page-top">people4people</a> -->
+                   <img src="img/mini9.png" class="navbar-brand page-scroll4">
+                   <a class="navbar-brand page-scroll" href="#page-top">people4people</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">Sobre</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#services">Como Funciona</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#lancamento">Lançamento</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#inscricao">Inscreva-se</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contact">Mais Informações</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <header id="home">
+            <div class="header-content">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                    </div>
+                  </div>
+                <div class="header-content-inner">
+                    <h1 id="homeHeading">A nova forma de consumir serviço ao alcance da sua mão</h1>
+                    <hr>
+                    <a href="#about" class="btn btn-primary btn-xl page-scroll">saiba mais</a>
+                </div>
+                <script type="text/ng-template" id="templateId">
+
+                    <div id="target"  ng-controller="postserviceConsulta">
+                        Click here
+                      </div>
+                    </script>
+            </div>
+        </header>
+
+        <section class="bg-dark" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <img src="img/logo.png">
+                        <hr class="light">
+                        <p class="text-faded">People4People é uma plataforma prestadora de serviços que visa a democratização, simplificação e automação do encontro de profissionais que provém serviços com aqueles que o consomem.</p>
+                        <p class="text-faded">Um ambiente onde usuários finais podem de uma maneira centralizada encontrar os mais diversos prestadores que possam solucionar seus problemas.</p>
+                        <p  class="text-faded">Com People4People profissionais qualificados poderão começar a oferecer seus serviços de forma independente e livre, facilitando a autonomia do seu trabalho. Com ele todo profissional poderá se cadastrar, montar seu perfil de acordo com suas qualificações e começar sua carreira People4People. Podendo via a mesma serem visíveis ao seu público alvo, agendar suas prestações de serviços, atender seus clientes e receber seus pagamentos via aplicação. O liberando de toda "infra-estrutura" necessária para se manter o negócio. Com total liberdade e conversa direta com seus clientes, sem nenhum intermediário burocrático.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Como Funciona?</h2>
+                        <hr class="primary">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa-mobile-phone text-primary sr-icons"></i>
+                            <h3>People4People às suas mãos</h3>
+                            <p class="text-muted">Acesse o aplicativo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa-map-marker text-primary sr-icons"></i>
+                            <h3>Match</h3>
+                            <p class="text-muted">Encontre o profissional de seu gosto, de maneira intuitiva e segura</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa-calendar text-primary sr-icons"></i>
+                            <h3>Agende</h3>
+                            <p class="text-muted">Marque seu serviço de maneira ágil, sem burocracias e direto com o prestador</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa-handshake-o text-primary sr-icons"></i>
+                            <h3>Negócio Fechado</h3>
+                            <p class="text-muted">Através da plataforma People4People você poderá fechar o negócio na hora, e usufruir desse serviço através de Web Conferência ou visitas agendadas. De forma simples, assegurando aos dois lados do negócio a excelência People4People</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="bg-primary" id="lancamento">
+            <div class="container text-center">
+                <div class="call-to-action">
+                    <h2>Lançamento</h2>
+                    <hr class="light" />
+                    <p class="text-faded">A maior revolução do jeito de se entender serviço começa aqui e em breve estaremos disponíveis em todas as plataformas!</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa fa-android sr-icons"></i>
+                            <h4>Android</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-6 text-center">
+                        <div class="service-box">
+                            <i class="fa fa-4x fa-apple sr-icons"></i>
+                            <h4>IOS</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="bg-dark" id="inscricao">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Inscreva-se</h2>
+                        <hr class="light">
+                        <p class="text-faded">Caso tenha interesse, se increva agora no pré-lançamento para receber vantagens especiais</p>
+                        <p class="text-faded">Iremos lembrar com carinho das pessoas que nos apoiaram desde o início!</p>
+                        <p class="text-faded">Selecione o perfil abaixo que se encaixe a você e participe, seu cadastro nos ajudará muito :)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                      <div class="row control-group col-lg-13 text-center" id="btnsPrestador">
+                          <div id="tab" class="btn-group" data-toggle="buttons-radio">
+                              <a href="#prestador" id="btnPrestador" class="btn btn-success btn-info" data-toggle="tab">Prestador</a>
+                              <a href="#naoPrestador" id="btnNaoPrestador" class="btn btn-success btn-info" data-toggle="tab">Cliente</a>
+                          </div>
+                      </div>
+                      <div class="tab-content">
+                        <div class="tab-pane" id="prestador">
+                          <form name="sentMessage" ng-submit="postdataPrestador(user.username,user.cpf,user.observacoes,user.email,user.telefone,user.atividade,user.dtNascimento)" id="contactForm" validate>
+                                <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Nome Completo</label>
+                                            <input type="text" ng-model="user.username" name="username" class="form-control" placeholder="Nome Completo" ng-required="user.username" required="true">
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Data de Nascimento</label>
+
+                                            <input type="text" ng-model="user.dtNascimento" class="form-control" placeholder="dd/mm/yyyy" name="dtNascimento" pattern="^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$" title="Campo deverá ser preenchido da seguinte forma dd/mm/yyyy. Exemplo: 01/01/2017" required="true">
+
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" ng-model="user.email" placeholder="user@exemplo.com.br" name="email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>CPF</label>
+
+                                            <input type="text" class="form-control" ng-model="user.cpf" placeholder="XXX.XXX.XXX-XX" name="cpf" pattern="([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" title="CPF inválido." required="true"  >
+
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Telefone</label>
+
+                                            <input type="tel" ng-model="user.telefone" class="form-control" placeholder="(XX)XXXX-XXXX" name="telefone" pattern="^([1-9]{2}\)([0-9]{4,5})[-. ]?([0-9]{4})$" title="Telefone inválido! Campo deverá ser composto como no exemplo: (11)99999-9999" required="true" >
+
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Atividade</label>
+                                            <input type="text" class="form-control" ng-model="user.atividade" placeholder="Que serviço você presta?" id="atividade" required="true">
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Observações</label>
+                                            <textarea rows="5" class="form-control" ng-model="user.observacoes" placeholder="Se desejar compartilhe conosco um comentário" id="message" required="false"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row control-group">
+                                        <div class="col-lg-12 text-center">
+                                            <button type="submit"  class="btn btn-success btn-lg">Enviar</button>
+                                        </div>
+                                    </div>
+                                  </form>
+                            </div>
+                            <div class="tab-pane" id="naoPrestador">
+                              <form name="sentMessage" ng-submit="postdataNaoPrestador(user.username2,user.cpf2,user.observacoes2,user.email2,user.telefone2,user.dtNascimento2)" id="contactForm" validate>
+
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+
+                                            <label>Nome Completo</label>
+                                            <input type="text" ng-model="user.username2" name="username2" class="form-control" placeholder="Nome Completo" required>
+
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>Data de Nascimento</label>
+                                            <input type="text" ng-model="user.dtNascimento2" class="form-control" placeholder="dd/mm/yyyy" name="dtNascimento2" pattern="^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$" title="Campo deverá ser preenchido da seguinte forma dd/mm/yyy. Exemplo: 01/01/2017"  required="true">
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                       <label>Email</label>
+                                        <input type="email" class="form-control" ng-model="user.email2" placeholder="user@exemplo.com.br" name="email2" required>
+                                    </div>
+                                </div>
+
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>CPF</label>
+                                        <input type="text" ng-model="user.cpf2" class="form-control" placeholder="XXX.XXX.XXX-XX" id="cpf" pattern="([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" title="CPF inválido." required="true" >
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>Telefone</label>
+                                        <input type="tel" ng-model="user.telefone2" class="form-control" placeholder="(XX)XXXX-XXXX" id="phone" pattern="^([1-9]{2}\)([0-9]{4,5})[-. ]?([0-9]{4})$" title="Telefone inválido! Campo deverá ser composto como no exemplo: (11)99999-9999" required="true">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>Serviço desejado</label>
+                                        <textarea rows="5" ng-model="user.observacoes2" class="form-control" placeholder="Que serviço você procura?" id="message" required="true"></textarea>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="row control-group">
+                                    <div class="col-lg-12 text-center">
+                                        <button type="submit"  class=" btn btn-success btn-lg">Enviar</button>
+                                    </div>
+                                </div>
+                                </form>
+                              </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <h2 class="section-heading">Mais informações</h2>
+                        <hr class="primary">
+                        <p>Pronto para entrar na próxima geração de serviços? Entre em contato e saiba mais</p>
+                    </div>
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                        <p>
+                            <a href="mailto:contato@people4people.com.br">contato@people4people.com.br</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- jQuery -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+        <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+        <!-- Theme JavaScript -->
+        <script src="js/creative.min.js"></script>
+
+    </body>
+
+</html>
